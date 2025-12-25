@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cabaret - Scottsdale's Premier Entertainment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #B8860B;
+            --red: #DC143C;
+            --dark-red: #8B0000;
+            --black: #000000;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(220, 20, 60, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--dark-red);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 12px 0;
+            background: rgba(0,0,0,0.98);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 32px;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+            position: relative;
+            transition: all 0.3s;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(139,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, var(--black), transparent);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: heroEntry 1s ease-out;
+        }
+
+        @keyframes heroEntry {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(60px, 10vw, 120px);
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(220,20,60,0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(220,20,60,0.5); }
+            to { text-shadow: 0 0 40px rgba(255,215,0,0.6), 0 0 60px rgba(220,20,60,0.4); }
+        }
+
+        .tagline {
+            font-size: 22px;
+            color: var(--gold);
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .shuttle-banner {
+            background: rgba(0,0,0,0.6);
+            border: 2px solid var(--gold);
+            padding: 18px 40px;
+            display: inline-block;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .shuttle-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .shuttle-banner:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,215,0,0.4);
+        }
+
+        .shuttle-text {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 45px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+            box-shadow: 0 5px 20px rgba(220,20,60,0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(220,20,60,0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border-color: var(--gold);
+            box-shadow: 0 5px 20px rgba(255,215,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--black) 0%, rgba(139,0,0,0.1) 100%);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--red);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            padding: 45px 30px;
+            text-align: center;
+            border: 1px solid rgba(255,215,0,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(255,215,0,0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Bachelor Section */
+        .bachelor-party {
+            padding: 100px 0;
+            background: var(--black);
+            position: relative;
+        }
+
+        .bachelor-party::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="none" stroke="rgba(255,215,0,0.05)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+        }
+
+        .bachelor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bachelor-card {
+            padding: 40px 30px;
+            background: linear-gradient(135deg, rgba(220,20,60,0.1), rgba(0,0,0,0.5));
+            border: 2px solid var(--dark-red);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bachelor-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .bachelor-card:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 15px 35px rgba(255,215,0,0.3);
+        }
+
+        .bachelor-card h3 {
+            font-size: 20px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* VIP Section */
+        .vip {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(139,0,0,0.2) 0%, var(--black) 100%);
+        }
+
+        .vip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .vip-card {
+            padding: 40px 25px;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,215,0,0.3);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .vip-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: rgba(255,215,0,0.05);
+            box-shadow: 0 15px 30px rgba(255,215,0,0.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--black);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-card {
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,215,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255,215,0,0.2);
+        }
+
+        .contact-card h3 {
+            font-size: 24px;
+            color: var(--gold);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .phone-cta {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .phone-cta:hover {
+            background: var(--dark-red);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(220,20,60,0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid var(--dark-red);
+        }
+
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--red), var(--dark-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(220,20,60,0.5);
+            transition: all 0.3s;
+            font-size: 28px;
+            border: 2px solid var(--gold);
+            animation: floatButton 3s ease-in-out infinite;
+        }
+
+        @keyframes floatButton {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 15px 40px rgba(255,215,0,0.6);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 60px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">SKIN CABARET</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Experience</a></li>
+                <li><a href="#bachelor">Bachelor</a></li>
+                <li><a href="#vip">VIP</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>SKIN CABARET</h1>
+            <p class="tagline">Scottsdale's Elite Entertainment</p>
+            <div class="shuttle-banner">
+                <div class="shuttle-text">FREE VIP SHUTTLE - (480) 425-7546</div>
+            </div>
+            <div class="cta-buttons">
+                <a href="tel:4804257546" class="btn btn-primary">CALL NOW</a>
+                <a href="#bachelor" class="btn btn-secondary">BACHELOR PARTIES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">World-Class Experience</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">★</div>
+                    <h3>Premium Shows</h3>
+                    <p>Top-tier entertainment with world-class performers every night</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">V</div>
+                    <h3>VIP Experience</h3>
+                    <p>Exclusive VIP areas with premium bottle service</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">S</div>
+                    <h3>Free Shuttle</h3>
+                    <p>Complimentary luxury transportation for all groups</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">P</div>
+                    <h3>Private Events</h3>
+                    <p>Custom packages for bachelor parties and celebrations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bachelor Parties -->
+    <section class="bachelor-party" id="bachelor">
+        <div class="container">
+            <h2 class="section-title">Bachelor Party Central</h2>
+            <div class="bachelor-grid">
+                <div class="bachelor-card">
+                    <h3>Free Transport</h3>
+                    <p>Luxury shuttle for your entire crew</p>
+                </div>
+                <div class="bachelor-card">
+                    <h3>VIP Packages</h3>
+                    <p>Premium bottles and reserved seating</p>
+                </div>
+                <div class="bachelor-card">
+                    <h3>Skip The Line</h3>
+                    <p>Priority entry for all parties</p>
+                </div>
+                <div class="bachelor-card">
+                    <h3>Custom Events</h3>
+                    <p>Tailored for any group size</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="tel:4804257546" class="btn btn-primary">BOOK YOUR PARTY</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP Section -->
+    <section class="vip" id="vip">
+        <div class="container">
+            <h2 class="section-title">VIP Membership</h2>
+            <div class="vip-grid">
+                <div class="vip-card">
+                    <h3 style="color: var(--gold);">Priority Access</h3>
+                    <p>Never wait in line</p>
+                </div>
+                <div class="vip-card">
+                    <h3 style="color: var(--gold);">Reserved Areas</h3>
+                    <p>Premium VIP seating</p>
+                </div>
+                <div class="vip-card">
+                    <h3 style="color: var(--gold);">Bottle Service</h3>
+                    <p>Complimentary bottles</p>
+                </div>
+                <div class="vip-card">
+                    <h3 style="color: var(--gold);">Exclusive Events</h3>
+                    <p>VIP-only nights</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Visit Tonight</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Location</h3>
+                    <p>1137 N Scottsdale Rd</p>
+                    <p>Scottsdale, AZ 85257</p>
+                    <a href="tel:4804257546" class="phone-cta">(480) 425-7546</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Hours</h3>
+                    <p><strong>Open Daily</strong></p>
+                    <p>8:00 PM - 6:00 AM</p>
+                    <p>Happy Hour: 8-10 PM</p>
+                </div>
+                <div class="contact-card">
+                    <h3>Free Shuttle</h3>
+                    <p>Available until 5 AM</p>
+                    <p>Call for pickup</p>
+                    <a href="tel:4804257546" class="phone-cta">(480) 425-7546</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Skin Cabaret Scottsdale. All Rights Reserved. | 21+ Only</p>
+    </footer>
+
+    <!-- Floating Call Button -->
+    <a href="tel:4804257546" class="floating-btn">📞</a>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar effect on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,555 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to black, white, red with silver and gold accents */
+  --background: oklch(0.02 0 0); /* Deep black background */
+  --foreground: oklch(0.98 0 0); /* Bright white text */
+  --card: oklch(0.05 0 0); /* Dark card background */
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.05 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.65 0.25 25); /* Rich red primary */
+  --primary-foreground: oklch(0.98 0 0); /* White text on red */
+  --secondary: oklch(0.15 0 0); /* Dark gray secondary */
+  --secondary-foreground: oklch(0.98 0 0); /* White text on dark */
+  --muted: oklch(0.12 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.7 0.28 25); /* Bright red accent */
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.65 0.25 25); /* Red borders */
+  --input: oklch(0.98 0 0); /* White input fields */
+  --ring: oklch(0.65 0.25 25); /* Red focus rings */
+
+  /* Added silver and gold accent colors */
+  --silver: oklch(0.75 0 0); /* Bright silver */
+  --silver-dark: oklch(0.55 0 0); /* Darker silver */
+  --gold: oklch(0.8 0.15 85); /* Rich gold */
+  --gold-dark: oklch(0.65 0.12 85); /* Darker gold */
+
+  --chart-1: oklch(0.65 0.25 25);
+  --chart-2: oklch(0.15 0 0);
+  --chart-3: oklch(0.7 0.28 25);
+  --chart-4: oklch(0.98 0 0);
+  --chart-5: oklch(0.02 0 0);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.02 0 0);
+  --sidebar-foreground: oklch(0.65 0.25 25);
+  --sidebar-primary: oklch(0.15 0 0);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.7 0.28 25);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.65 0.25 25);
+  --sidebar-ring: oklch(0.65 0.25 25);
+}
+
+.dark {
+  /* Enhanced dark mode with red accents */
+  --background: oklch(0.01 0 0);
+  --foreground: oklch(0.99 0 0);
+  --card: oklch(0.03 0 0);
+  --card-foreground: oklch(0.99 0 0);
+  --popover: oklch(0.03 0 0);
+  --popover-foreground: oklch(0.99 0 0);
+  --primary: oklch(0.7 0.28 25);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.08 0 0);
+  --muted-foreground: oklch(0.75 0 0);
+  --accent: oklch(0.75 0.3 25);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.6 0.28 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.7 0.28 25);
+  --input: oklch(0.99 0 0);
+  --ring: oklch(0.7 0.28 25);
+  --chart-1: oklch(0.7 0.28 25);
+  --chart-2: oklch(0.18 0 0);
+  --chart-3: oklch(0.75 0.3 25);
+  --chart-4: oklch(0.99 0 0);
+  --chart-5: oklch(0.01 0 0);
+  --sidebar: oklch(0.03 0 0);
+  --sidebar-foreground: oklch(0.7 0.28 25);
+  --sidebar-primary: oklch(0.18 0 0);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.75 0.3 25);
+  --sidebar-accent-foreground: oklch(0.99 0 0);
+  --sidebar-border: oklch(0.7 0.28 25);
+  --sidebar-ring: oklch(0.7 0.28 25);
+}
+
+@theme inline {
+  /* Updated to use Montserrat for luxury typography */
+  --font-montserrat: "Montserrat";
+  --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Added silver and gold color utilities */
+  --color-silver: var(--silver);
+  --color-silver-dark: var(--silver-dark);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Enhanced animations for Skin logo and premium elements */
+  @keyframes skinLogoPulse {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 40px rgba(0, 0, 0, 0.6));
+      transform: scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 40px rgba(0, 0, 0, 1)) drop-shadow(0 0 80px rgba(0, 0, 0, 0.8))
+        drop-shadow(0 0 120px rgba(0, 0, 0, 0.6));
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes intensePulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), inset 0 0 20px
+        rgba(239, 68, 68, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(239, 68, 68, 0.9), 0 0 80px rgba(239, 68, 68, 0.7), 0 0 120px rgba(239, 68, 68, 0.5),
+        inset 0 0 30px rgba(239, 68, 68, 0.2);
+    }
+  }
+
+  @keyframes ornateGlow {
+    0%,
+    100% {
+      border-color: rgba(255, 215, 0, 0.6);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.1);
+    }
+    50% {
+      border-color: rgba(255, 215, 0, 1);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6), 0 0 75px rgba(255, 215, 0, 0.4),
+        inset 0 0 25px rgba(255, 215, 0, 0.2);
+    }
+  }
+
+  @keyframes textGlow {
+    0%,
+    100% {
+      text-shadow: 0 0 10px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(239, 68, 68, 0.9), 0 0 40px rgba(239, 68, 68, 0.7), 0 0 60px rgba(239, 68, 68, 0.5);
+    }
+  }
+
+  @keyframes buttonPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 15px rgba(192, 192, 192, 0.4), 0 0 30px rgba(239, 68, 68, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(192, 192, 192, 0.7), 0 0 50px rgba(239, 68, 68, 0.6), 0 0 75px rgba(239, 68, 68, 0.4);
+      transform: scale(1.02);
+    }
+  }
+
+  /* Added award badge glow animation */
+  @keyframes awardGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
+      border-color: rgba(255, 215, 0, 0.6);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
+      border-color: rgba(255, 215, 0, 1);
+    }
+  }
+
+  @keyframes luxuryGlow {
+    0%,
+    100% {
+      text-shadow: 0 0 20px rgba(220, 38, 38, 0.8), 0 0 40px rgba(220, 38, 38, 0.6);
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+    }
+    50% {
+      text-shadow: 0 0 30px rgba(220, 38, 38, 1), 0 0 60px rgba(220, 38, 38, 0.8), 0 0 80px rgba(220, 38, 38, 0.6);
+      box-shadow: 0 0 30px rgba(220, 38, 38, 0.6), 0 0 60px rgba(220, 38, 38, 0.4);
+    }
+  }
+
+  @keyframes redShimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Added silver and gold shimmer animations */
+  @keyframes silverShimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes goldShimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes luxuryFloat {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-8px) rotate(1deg);
+    }
+    66% {
+      transform: translateY(-4px) rotate(-1deg);
+    }
+  }
+
+  @keyframes sparkle {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Added scrolling animation for reviews */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Added proper reviews scrolling animation with duplicated content */
+  @keyframes scrollReviews {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% - 2rem));
+    }
+  }
+
+  @keyframes logoGlow {
+    0%,
+    100% {
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.6);
+      filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+    }
+    50% {
+      text-shadow: 0 0 30px rgba(0, 0, 0, 1), 0 0 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(0, 0, 0, 0.6);
+      filter: drop-shadow(0 0 40px rgba(0, 0, 0, 1)) drop-shadow(0 0 80px rgba(0, 0, 0, 0.8));
+    }
+  }
+
+  /* Added pulsing background animation for tagline */
+  @keyframes pulseBackground {
+    0%,
+    100% {
+      background-color: transparent;
+    }
+    50% {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  /* Enhanced animation classes for premium effects */
+  .animate-skin-logo-pulse {
+    animation: skinLogoPulse 3s ease-in-out infinite;
+  }
+
+  .animate-intense-pulse {
+    animation: intensePulse 2s ease-in-out infinite;
+  }
+
+  .animate-ornate-glow {
+    animation: ornateGlow 4s ease-in-out infinite;
+  }
+
+  /* Added award glow animation class */
+  .animate-award-glow {
+    animation: awardGlow 3s ease-in-out infinite;
+  }
+
+  .animate-text-glow {
+    animation: textGlow 3s ease-in-out infinite;
+  }
+
+  .animate-button-pulse {
+    animation: buttonPulse 2.5s ease-in-out infinite;
+  }
+
+  .animate-luxury-glow {
+    animation: luxuryGlow 4s ease-in-out infinite;
+  }
+
+  .animate-red-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: redShimmer 3s infinite;
+  }
+
+  /* Added silver and gold shimmer classes */
+  .animate-silver-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(192, 192, 192, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: silverShimmer 3s infinite;
+  }
+
+  .animate-gold-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: goldShimmer 3s infinite;
+  }
+
+  .animate-luxury-float {
+    animation: luxuryFloat 6s ease-in-out infinite;
+  }
+
+  .animate-sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+
+  .animate-scroll {
+    animation: scroll 10s linear infinite;
+  }
+
+  /* Added reviews scroll animation class */
+  .animate-scroll-reviews {
+    animation: scrollReviews 30s linear infinite;
+  }
+
+  /* Added pulse background animation class */
+  .animate-pulse-background {
+    animation: pulseBackground 3s ease-in-out infinite;
+  }
+
+  /* Enhanced ornate card styling with glowing effects */
+  .ornate-card {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .ornate-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .ornate-card:hover {
+    border-color: rgba(255, 215, 0, 1);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(255, 215, 0, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .ornate-card:hover::before {
+    left: 100%;
+  }
+
+  /* Updated glass morphism effects for red theme */
+  .glass-morphism {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+  }
+
+  .luxury-gradient {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(220, 38, 38, 0.1));
+  }
+
+  /* Added silver and gold gradient classes */
+  .silver-gradient {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(192, 192, 192, 0.1));
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(255, 215, 0, 0.1));
+  }
+
+  /* Adding smooth entrance animations for sections */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInFromBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animation classes for smooth entrance effects */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-bottom {
+    animation: slideInFromBottom 1s ease-out forwards;
+  }
+
+  /* Staggered animation delays for sequential entrance */
+  .animate-delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .animate-delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  /* Initial hidden state for elements that will animate in */
+  .animate-on-scroll {
+    opacity: 0;
+  }
+}
